@@ -1,0 +1,6 @@
+_security_groups:
+  - ssh_restricted
+  - web_open
+  - prometheus_local_node_exporter
+  - prometheus_exporters
+  - common_network

@@ -1,0 +1,4 @@
+mysql_client:
+  host: localhost
+  user: root
+  password: "{{ mysql_root_dummy_pass }}" # in SOPS in ce-provision-config

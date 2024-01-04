@@ -1,0 +1,34 @@
+- hosts: "_{{ _aws_resource_name | regex_replace('-', '_') }}"
+  become: true
+
+  vars:
+    _init:
+      vars_dirs:
+        - "{{ _ce_provision_build_dir }}/vars/_global"
+        - "{{ _ce_provision_build_dir }}/vars/_regions/{{ _aws_region }}/_common"
+        - "{{ _ce_provision_build_dir }}/vars/_regions/{{ _aws_region }}/{{ _env_type }}"
+        - "{{ _ce_provision_build_dir }}/vars/{{ _aws_resource_name }}"
+
+  tasks:
+    - ansible.builtin.import_role:
+        name: _init
+    - ansible.builtin.import_role:
+        name: _meta/aws_client_instance
+    - ansible.builtin.import_role:
+        name: ssh_server
+    - ansible.builtin.import_role:
+        name: ce_ldap_safelist
+    - ansible.builtin.import_role:
+        name: _meta/webserver
+    - ansible.builtin.import_role:
+        name: _meta/common_base
+    - ansible.builtin.import_role:
+        name: pam_ldap
+    - ansible.builtin.import_role:
+        name: pam_linotp
+    - ansible.builtin.import_role:
+        name: prometheus.prometheus.node_exporter
+    - ansible.builtin.import_role:
+        name: cloudalchemy.process_exporter
+    - ansible.builtin.import_role:
+        name: _exit

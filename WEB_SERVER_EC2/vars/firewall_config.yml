@@ -1,0 +1,8 @@
+firewall_config:
+  rulesets:
+    - ssh_restricted
+    - web_open
+    - prometheus_exporters
+    - prometheus_local_node_exporter
+    - common_web
+    - common_network

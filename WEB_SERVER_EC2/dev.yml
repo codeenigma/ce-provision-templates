@@ -1,0 +1,9 @@
+### Standalone machine
+- name: EC2 template
+  ansible.builtin.import_playbook: "{{ _ce_provision_build_dir }}/plays/template-test-domain-net/template-test.yml"
+  vars:
+    _aws_region: eu-west-1
+    _env_type: dev
+    _aws_resource_name: template-test-domain-net
+    _profile: test
+
